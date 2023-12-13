@@ -110,8 +110,11 @@
         </div>
         <div class="mt-6">
             <!-- Comment Box and Submit Button -->
-            <textarea id="comment-input" class="rounded-md" placeholder="Write a comment..."></textarea>
-            <button id="submit-comment" class="mt-2">Submit Comment</button>
+            <textarea id="comment-input" class="w-full px-3 py-2 rounded-md bg-gray-800 text-white"
+                placeholder="Write a comment..."></textarea>
+            <button id="submit-comment"
+                class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Submit
+                Comment</button>
         </div>
         <div class="mt-6">
             <!-- Comments Section -->
@@ -126,7 +129,169 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        // Your JavaScript code here
+        $(document).ready(function () {
+            // Get the video ID from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var videoId = urlParams.get("id");
+
+            // Initialize the video player
+            $.ajax({
+                url: "", // Replace with your API endpoint for getting video details
+                type: "GET",
+                dataType: "json",
+                success: function (videoDetails) {
+                    // Create and initialize the video player (replace the source with the actual video URL)
+
+                    var videoPlayer = `
+                        <iframe width="100%" height="100%" src="${videoDetails.Table1[0].URL}" frameborder="0" allowfullscreen></iframe>
+                    `;
+                    $("#video-player").html(videoPlayer);
+
+                    $("#video-title").text(videoDetails.Table1[0].Title);
+                },
+                error: function (error) {
+                    console.error("Error fetching video details: " + error);
+                }
+            });
+
+            // Fetch and display the video rating on page load
+            $.ajax({
+                url: "", // Replace with your API endpoint for getting video rating
+                type: "GET",
+                dataType: "json",
+                success: function (ratingData) {
+                    // Update the star rating system based on the fetched rating
+                    try {
+                        updateStarRating(ratingData.Table1[0].Rating);
+                    } catch (error) {
+
+                    }
+
+                },
+                error: function (error) {
+                    console.error("Error fetching video rating: " + error);
+                }
+            });
+
+            // Fetch and display comments on page load
+            $.ajax({
+                url: "", // Replace with your API endpoint for getting comments
+                type: "GET",
+                dataType: "json",
+                success: function (commentsData) {
+                    // Render comments
+                    try {
+                        renderComments(commentsData.Table1);
+                    } catch (error) {
+
+                    }
+
+                },
+                error: function (error) {
+                    console.error("Error fetching comments: " + error);
+                }
+            });
+
+            // Initialize the star rating system
+            $(".star").click(function () {
+                var rating = $(this).index() + 1; // Get the selected star's index and add 1 to get the rating value
+                var ratingData = {
+                    VideoID: videoId,
+                    Rating: rating
+                };
+                // Make an API call to submit the rating
+                $.ajax({
+                    url: "", // Replace with your API endpoint for rating submission
+                    type: "POST",
+                    data: JSON.stringify(ratingData),
+                    contentType: "application/json",
+                    success: function (response) {
+                        // Handle success response
+                        //alert("Rating submitted successfully!");
+
+                        // Update the star colors based on the selected rating
+                        updateStarRating(rating.Table1[0].Rating);
+                    },
+                    error: function (error) {
+                        console.error("Error submitting rating: " + error);
+                    }
+                });
+            });
+
+            // Handle "Submit Comment" button click
+            $("#submit-comment").click(function () {
+                var comment = $("#comment-input").val();
+                commentData = {
+                    VideoID: videoId,
+                    Comment: comment
+                };
+                // Make an API call to submit the comment
+                $.ajax({
+                    url: "", // Replace with your API endpoint for submitting comments
+                    type: "POST",
+                    data: JSON.stringify(commentData),
+                    contentType: "application/json",
+                    success: function (response) {
+                        // Handle success response
+                        //alert("Comment submitted successfully!");
+
+                        // Clear the comment input field
+                        $("#comment-input").val("");
+
+                        // Fetch and display updated comments
+                        $.ajax({
+                            url: "", // Replace with your API endpoint for getting comments
+                            type: "GET",
+                            dataType: "json",
+                            success: function (updatedCommentsData) {
+                                // Render updated comments
+                                renderComments(updatedCommentsData.Table1);
+                            },
+                            error: function (error) {
+                                console.error("Error fetching updated comments: " + error);
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.error("Error submitting comment: " + error);
+                    }
+                });
+            });
+
+            // Function to render comments
+            function renderComments(commentsData) {
+                var commentsList = $("#comments-list");
+                commentsList.empty();
+                var users = ["Alex","richard.hammond","courtney.87","rajesh007"];
+                for (let index = 0; index < commentsData.length; index++) {
+                    
+                    var nameText = users[index];
+                    if(index==0){
+                        nameText = "prakash"
+                    }
+                    var commentItem = `
+                        <li class="mb-2">
+                            <p class="text-lg font-semibold">${nameText}</p>
+                            <p class="text-gray-400">${commentsData[index].CommentText}</p>
+                        </li>
+                    `;
+                    commentsList.append(commentItem);
+                }
+                commentsData.forEach(function (comment) {
+                    
+                });
+            }
+
+            // Function to update the star rating system
+            function updateStarRating(rating) {
+                $(".star").removeClass("text-yellow-400");
+
+                for (var i = 1; i <= rating; i++) {
+                    $("#star" + i).addClass("text-yellow-400");
+                }
+            }
+        });
     </script>
 </body>
+
 </html>
