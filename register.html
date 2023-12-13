@@ -136,7 +136,7 @@
                 };
 
                 $.ajax({
-                    url: '', // Replace with your API endpoint for rating submission
+                    url: 'https://prod-56.eastus.logic.azure.com/workflows/eb7c88bdc47f439c8d5fa9adc1cc0cfb/triggers/request/paths/invoke/api/v1/user?api-version=2016-10-01&sp=%2Ftriggers%2Frequest%2Frun&sv=1.0&sig=kzj0uZDri9Rh7hH_TWWwSCDDUbEhApLxszhtwNta8js', // Replace with your API endpoint for rating submission
                     type: "POST",
                     data: JSON.stringify(userData),
                     contentType: "application/json",
