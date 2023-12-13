@@ -107,7 +107,50 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
     <script>
-        // JavaScript for form submission and other functionalities can be added here.
+        function calculateSHA256(inputString) {
+            // Create a new instance of jsSHA
+            var shaObj = new jsSHA("SHA-256", "TEXT");
+
+            // Update the input string
+            shaObj.update(inputString);
+
+            // Generate the hash
+            var hash = shaObj.getHash("HEX");
+
+            return hash;
+        };
+        $(document).ready(function () {
+            // Handle form submission
+            $("#register-form").submit(function (event) {
+                event.preventDefault();
+
+                // Get username and password
+                var username = $("#username").val();
+                var password = calculateSHA256($("#password").val());
+
+                // Make an API call here to register the user
+                // Example: You can use jQuery.ajax or fetch API to send a POST request to your server to create a new user
+                const userData = {
+                    Username: username,
+                    Password: password
+                };
+
+                $.ajax({
+                    url: '', // Replace with your API endpoint for rating submission
+                    type: "POST",
+                    data: JSON.stringify(userData),
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert("Registered with username: " + username);
+                        window.location.href = "index.html"
+                    },
+                    error: function (error) {
+                        alert("Something went wrong");
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
