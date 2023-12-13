@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vid Player- Video Upload</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for Unusual Layout */
+        body {
+            background-color: #f2f2f2;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem;
+        }
+
+        .left-content {
+            flex-basis: 100%;
+            order: 2;
+            text-align: center;
+        }
+
+        /* Login Form */
+        .login-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Login Button */
+        .login-button {
+            background-color: #FF5733;
+            color: white;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1 class="text-4xl font-semibold">Welcome to Movie Hub</h1>
+        <p>Your unique destination for movie exploration.</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="left-content">
+            <div class="login-form">
+                <h2 class="text-2xl font-semibold">Upload the movie Hub</h2>
+                <!-- Video Upload Form -->
+                <form id="upload-form">
+                    <div class="mb-4">
+                        <label for="video" class="block text-sm font-medium">Select Video File</label>
+                        <input type="file" id="video" name="video"
+                            class="w-full p-2 rounded-md bg-gray-100" accept="video/*" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="title" class="block text-sm font-medium">Title</label>
+                        <input type="text" id="title" name="title"
+                            class="w-full p-2 rounded-md bg-gray-100" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="publisher" class="block text-sm font-medium">Publisher</label>
+                        <input type="text" id="publisher" name="publisher"
+                            class="w-full p-2 rounded-md bg-gray-100" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="Producer" class="block text-sm font-medium">Producer</label>
+                        <input type="text" id="producer" name="producer"
+                            class="w-full p-2 rounded-md bg-gray-100" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="genre" class="block text-sm font-medium">Genre</label>
+                        <select id="genre" name="genre" class="w-full p-2 rounded-md bg-gray-100" required>
+                            <option value="action">Action</option>
+                            <option value="drama">Drama</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="horror">Horror</option>
+                            <option value="documentary">Documentary</option>
+                            <!-- Add more genres as needed -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="ageRating" class="block text-sm font-medium">Age Rating</label>
+                        <select id="ageRating" name="ageRating" class="w-full p-2 rounded-md bg-gray-100" required>
+                            <option value="G">G - General Audiences</option>
+                            <option value="PG">PG - Parental Guidance Suggested</option>
+                            <option value="PG-13">PG-13 - Parents Strongly Cautioned</option>
+                            <option value="R">R (Restricted)</option>
+                            <!-- Add more age ratings as needed -->
+                        </select>
+                    </div>
+                    <button type="submit" class="login-button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2023 Movie Hub. All rights reserved.
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript for form submission and other functionalities can be added here.
+    </script>
+</body>
+
+</html>

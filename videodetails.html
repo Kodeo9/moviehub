@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Hub - Video Details</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS to change the page style */
+        body {
+            background-color: #f5f5f5; /* Set background color to a light gray */
+            color: #333; /* Set text color to dark gray */
+            font-family: Arial, sans-serif; /* Change the font family */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Header Section */
+        header {
+            background-color: #333; /* Set header background color to dark gray */
+            color: #fff; /* Set header text color to white */
+            padding: 1rem; /* Add padding to the header */
+        }
+
+        /* Video Player and Details Section */
+        .container {
+            max-width: 800px; /* Set maximum width for content */
+            margin: 0 auto; /* Center content horizontally */
+            padding: 2rem; /* Add padding to the container */
+            background-color: #fff; /* Set container background color to white */
+            border-radius: 8px; /* Add a rounded border to the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the container */
+        }
+
+        h2 {
+            font-size: 24px; /* Increase the font size for video title */
+        }
+
+        /* 5-Star Rating System */
+        .star {
+            font-size: 24px; /* Increase the font size of stars */
+            color: #fddb3a; /* Set star color to yellow */
+            margin-right: 5px; /* Add spacing between stars */
+        }
+
+        /* Comment Box and Submit Button */
+        textarea {
+            width: 100%; /* Make the textarea full width */
+            padding: 10px; /* Add padding to the textarea */
+            border: 1px solid #ccc; /* Add a border to the textarea */
+            border-radius: 5px; /* Add rounded corners to the textarea */
+        }
+
+        button {
+            background-color: #007bff; /* Set button background color to blue */
+            color: #fff; /* Set button text color to white */
+            font-weight: bold; /* Increase the font weight of the button text */
+            padding: 10px 20px; /* Add padding to the button */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Add rounded corners to the button */
+            cursor: pointer; /* Add pointer cursor to the button */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Change button background color on hover */
+        }
+
+        /* Comments Section */
+        ul {
+            list-style: none; /* Remove default list bullets */
+            padding: 0; /* Remove default list padding */
+        }
+
+        li {
+            margin-bottom: 10px; /* Add spacing between comments */
+        }
+
+        .text-lg {
+            font-size: 18px; /* Decrease the font size for comments */
+        }
+
+        .text-gray-400 {
+            color: #777; /* Set comment text color to a lighter gray */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+    </header>
+
+    <!-- Video Player and Details Section -->
+    <div class="container mx-auto mt-6">
+        <h2 id="video-title" class="text-2xl font-semibold mb-2">Movie</h2>
+        <div id="video-player" class="w-full h-screen relative">
+            <!-- Video player iframe will be inserted here -->
+        </div>
+        <div class="mt-4">
+            <!-- 5-Star Rating System -->
+            <p class="text-lg font-semibold mb-2">Rate this video:</p>
+            <div class="flex">
+                <span id="star1" class="star cursor-pointer">&#9733;</span>
+                <span id="star2" class="star cursor-pointer">&#9733;</span>
+                <span id="star3" class="star cursor-pointer">&#9733;</span>
+                <span id="star4" class="star cursor-pointer">&#9733;</span>
+                <span id="star5" class="star cursor-pointer">&#9733;</span>
+            </div>
+        </div>
+        <div class="mt-6">
+            <!-- Comment Box and Submit Button -->
+            <textarea id="comment-input" class="rounded-md" placeholder="Write a comment..."></textarea>
+            <button id="submit-comment" class="mt-2">Submit Comment</button>
+        </div>
+        <div class="mt-6">
+            <!-- Comments Section -->
+            <h3 class="text-xl font-semibold mb-2">Comments</h3>
+            <ul id="comments-list">
+                <!-- Comments will be loaded dynamically using jQuery -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // Your JavaScript code here
+    </script>
+</body>
+</html>
