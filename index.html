@@ -152,7 +152,7 @@
                     success: function (response) {
                         try {
                             alert("Logged In! UserType " + response.Table1[0].UserType);
-                            if (response.Table1[0].user_type === "user") {
+                            if (response.Table1[0].user_type == "user") {
                                 window.location.href = "home.html"
                             } else {
                                 window.location.href = "upload.html"
